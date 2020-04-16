@@ -51,17 +51,17 @@ if expr "$1" : "apache" 1>/dev/null; then
 			fi
 		done
 	else
-		# Enable maintenance mode.
-		run_as 'php occ maintenance:mode --on'
-
 		# Upgrade the database.
 		run_as 'php occ upgrade'
+
+		# Enable maintenance mode.
+		run_as 'php occ maintenance:mode --on'
 
 		# Add missing indices in database.
 		run_as 'php occ db:add-missing-indices'
 
 		# Convert database columns to big int.
-		run_as 'php occ db:convert-filecache-bigint'
+		run_as 'php occ db:convert-filecache-bigint --no-interaction'
 
 		# Disable maintenance.
 		run_as 'php occ maintenance:mode --off'
