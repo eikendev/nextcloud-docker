@@ -23,7 +23,8 @@ RUN set -ex \
 	&& sed -i "s/Listen 80/Listen ${APACHE_PORT}/g" /etc/apache2/ports.conf \
 	&& sed -i "s/:80>/:${APACHE_PORT}>/g" /etc/apache2/sites-available/000-default.conf \
 	&& sed -i 's!ErrorLog.*!ErrorLog /dev/stderr!g' /etc/apache2/*.conf /etc/apache2/sites-available/*.conf \
-	&& sed -i 's!CustomLog.*!CustomLog /dev/stdout common!g' /etc/apache2/*.conf /etc/apache2/sites-available/*.conf
+	&& sed -i 's!CustomLog.*!CustomLog /dev/stdout common!g' /etc/apache2/*.conf /etc/apache2/sites-available/*.conf \
+	&& sed -i 's!/var/www/html!/var/www/app!g' /var/spool/cron/crontabs/*
 
 # Copy the installation to the new document root. We adjust the permissions so
 # that only root can change them, but others can read them.
