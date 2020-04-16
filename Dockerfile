@@ -15,12 +15,15 @@ WORKDIR ${APACHE_DOCUMENT_ROOT}
 # logging for a non-root user, the user has to be added to the tty group as
 # described in
 # https://github.com/moby/moby/issues/31243#issuecomment-406879017.
+# Additionally, the default log files are explicitly set to stdout and stderr.
 RUN set -ex \
 	&& usermod -a -G tty ${APACHE_RUN_USER} \
 	&& mkdir -p ${APACHE_DOCUMENT_ROOT} \
 	&& sed -i 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
 	&& sed -i "s/Listen 80/Listen ${APACHE_PORT}/g" /etc/apache2/ports.conf \
-	&& sed -i "s/:80>/:${APACHE_PORT}>/g" /etc/apache2/sites-available/000-default.conf
+	&& sed -i "s/:80>/:${APACHE_PORT}>/g" /etc/apache2/sites-available/000-default.conf \
+	&& sed -i 's!ErrorLog.*!ErrorLog /dev/stderr!g' /etc/apache2/*.conf /etc/apache2/sites-available/*.conf \
+	&& sed -i 's!CustomLog.*!CustomLog /dev/stdout common!g' /etc/apache2/*.conf /etc/apache2/sites-available/*.conf
 
 # Copy the installation to the new document root. We adjust the permissions so
 # that only root can change them, but others can read them.
