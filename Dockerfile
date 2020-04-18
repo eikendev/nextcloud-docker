@@ -13,9 +13,9 @@ WORKDIR ${APACHE_DOCUMENT_ROOT}
 
 # Set a different root for Apache, see https://hub.docker.com/_/php/. To enable
 # logging for a non-root user, the user has to be added to the tty group as
-# described in
-# https://github.com/moby/moby/issues/31243#issuecomment-406879017.
-# Additionally, the default log files are explicitly set to stdout and stderr.
+# described in [0]. Additionally, the default log files are explicitly set to
+# stdout and stderr.
+# [0] https://github.com/moby/moby/issues/31243#issuecomment-406879017
 RUN set -ex \
 	&& usermod -a -G tty ${APACHE_RUN_USER} \
 	&& mkdir -p ${APACHE_DOCUMENT_ROOT} \
