@@ -18,4 +18,4 @@ run:
 		--rm \
 		--security-opt label=disable \
 		--name=${IMAGE} \
-		local/nextcloud
+		local/${IMAGE}
