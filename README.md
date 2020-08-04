@@ -1,4 +1,4 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/eikendev/nextcloud-docker)](https://hub.docker.com/r/eikendev/nextcloud-docker)
+[![Docker Pulls](https://img.shields.io/docker/pulls/eikendev/nextcloud)](https://hub.docker.com/r/eikendev/nextcloud)
 
 ## About
 
