@@ -1,3 +1,5 @@
+[![Docker Pulls](https://img.shields.io/docker/pulls/eikendev/nextcloud-docker)](https://hub.docker.com/r/eikendev/nextcloud-docker)
+
 ## About
 
 This is my extension of the official [Docker image for Nextcloud](https://github.com/nextcloud/docker).
