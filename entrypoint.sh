@@ -60,6 +60,9 @@ if expr "$1" : "apache" 1>/dev/null; then
 		# Add missing indices in database.
 		run_as 'php occ db:add-missing-indices'
 
+		# Add missing primary keys.
+		run_as 'php occ db:add-missing-primary-keys'
+
 		# Convert database columns to big int.
 		run_as 'php occ db:convert-filecache-bigint --no-interaction'
 
