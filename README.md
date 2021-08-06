@@ -22,12 +22,12 @@ version: '2'
 
 services:
     redis:
-        image: redis:alpine
+        image: docker.io/library/redis:alpine
         volumes:
             - redis:/data
 
     server:
-        image: eikendev/nextcloud
+        image: ghcr.io/eikendev/nextcloud:latest
         tty: true
         ports:
             - 8080:8080
@@ -41,7 +41,7 @@ services:
             - redis
 
     cron:
-        image: eikendev/nextcloud
+        image: ghcr.io/eikendev/nextcloud:latest
         tty: true
         entrypoint: /cron.sh
         volumes:
